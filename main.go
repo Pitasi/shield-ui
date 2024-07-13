@@ -15,10 +15,50 @@ import (
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
-		w.Write([]byte(`<form action="/graph" method="get">
+		w.Write([]byte(`
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shield UI</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			input[type="text"] {
+				width: 100%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				box-sizing: border-box;
+				border: 2px solid #ccc;
+				border-radius: 4px;
+			}
+
+			button {
+				background-color: #4CAF50;
+				color: white;
+				padding: 12px 20px;
+				margin: 8px 0;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: #45a049;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="/graph" method="get">
 			<input type="text" name="definition" placeholder="definition" />
 			<button type="submit">Submit</button>
-		</form>`))
+		</form>
+	</body>
+</html>
+`))
 	})
 
 	http.HandleFunc("/graph", func(w http.ResponseWriter, r *http.Request) {
